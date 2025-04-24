@@ -2,3 +2,4 @@ tensorflow==2.14
 tslearn
 nltk
 gunicorn
+Flask==2.3.3
