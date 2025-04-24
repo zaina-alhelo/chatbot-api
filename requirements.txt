@@ -3,3 +3,7 @@ tslearn
 nltk
 gunicorn
 Flask==2.3.3
+flask_cors
+numpy
+nltk
+scikit-learn
