@@ -1,3 +1,5 @@
+# app.py
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from mainc import predict_intent, get_responses, chatbot, words, labels, model, load_data
@@ -56,5 +58,4 @@ def chat():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-
     app.run(debug=True, host="0.0.0.0", port=port)
