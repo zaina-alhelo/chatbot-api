@@ -1,3 +1,4 @@
+#mainc 
 from flask import Flask, request, jsonify
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -7,6 +8,7 @@ import random
 import json
 import pickle
 import os
+nltk.data.path.append('./nltk_data')
 
 # تحميل ملفات NLTK المطلوبة
 nltk.download('punkt')

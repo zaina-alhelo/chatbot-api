@@ -1,3 +1,5 @@
+
+#app.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import nltk
@@ -8,6 +10,7 @@ import random
 import json
 import pickle
 import os
+nltk.data.path.append('./nltk_data')
 
 # Download required NLTK data at startup
 try:
