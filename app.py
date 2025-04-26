@@ -34,6 +34,3 @@ def chat():
     except Exception as e:
         print("Error in /chat route:", e)
         return jsonify({"error": "An error occurred. Please try again later."}), 500
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=10000)

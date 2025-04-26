@@ -11,7 +11,6 @@ from chatterbot.trainers import ListTrainer
 import spacy
 import os
 
-# تحميل موديل en_core_web_sm إذا لم يكن موجود
 try:
     spacy.load("en_core_web_sm")
 except OSError:
