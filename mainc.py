@@ -23,7 +23,7 @@ CHATTERBOT_DB = "chatterbot.sqlite3"
 
 def load_data(file_path):
     try:
-        with open(file_path, encoding='utf-8') as file:  # <-- هنا الإضافة المهمة
+        with open(file_path, encoding='utf-8') as file: 
             return json.load(file)
     except FileNotFoundError:
         print(f"File not found: {file_path}")
