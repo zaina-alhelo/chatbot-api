@@ -5,12 +5,18 @@
       "patterns": [
         "What are the leading causes of blindness in the US?",
         "What are common eye diseases?",
-        "Tell me about eye disorders."
+        "Tell me about eye disorders.",
+        "ما هي الأسباب الرئيسية للعمى في الولايات المتحدة؟",
+        "ما هي أمراض العيون الشائعة؟",
+        "أخبرني عن اضطرابات العين."
       ],
       "responses": [
         "The leading causes of blindness and low vision in the United States are primarily age-related eye diseases.",
-        " including age-related macular degeneration, cataract, diabetic retinopathy, and glaucoma.",
-        " Other common eye disorders include amblyopia and strabismus."
+        "Leading causes include age-related macular degeneration, cataract, diabetic retinopathy, and glaucoma.",
+        "Other common eye disorders include amblyopia and strabismus.",
+        "الأسباب الرئيسية للعمى وضعف البصر في الولايات المتحدة هي أمراض العيون المرتبطة بالعمر.",
+        "تشمل الأسباب التنكس البقعي المرتبط بالعمر، وإعتام عدسة العين، واعتلال الشبكية السكري، والزرق.",
+        "تشمل اضطرابات العيون الأخرى الكسل العيني والحول."
       ]
     },
     {
@@ -22,267 +28,147 @@
         "What is myopia?",
         "What is hyperopia?",
         "What is astigmatism?",
-        "What is presbyopia?"
+        "What is presbyopia?",
+        "ما هي أخطاء الانكسار؟",
+        "ما أنواع أخطاء الانكسار؟",
+        "كيف يمكن تصحيح أخطاء الانكسار؟",
+        "ما هو قصر النظر؟",
+        "ما هو طول النظر؟",
+        "ما هو الاستجماتيزم؟",
+        "ما هو طول النظر الشيخوخي؟"
       ],
       "responses": [
         "Refractive errors are the most frequent eye problems in the United States.",
-        "They include myopia (nearsightedness), hyperopia (farsightedness), astigmatism (distorted vision at all distances), and presbyopia (loss of ability to focus up close, occurring between age 40-50).",
-        "Refractive errors can be corrected by eyeglasses, contact lenses, or in some cases, surgery. [cite: 3, 4, 5]"
+        "They include myopia (nearsightedness), hyperopia (farsightedness), astigmatism (distorted vision), and presbyopia (loss of near focusing ability).",
+        "Refractive errors can be corrected by eyeglasses, contact lenses, or surgery.",
+        "أخطاء الانكسار هي أكثر مشاكل العيون شيوعًا في الولايات المتحدة.",
+        "تشمل قصر النظر، وطول النظر، والاستجماتيزم، وطول النظر الشيخوخي.",
+        "يمكن تصحيح أخطاء الانكسار باستخدام النظارات الطبية أو العدسات اللاصقة أو الجراحة."
       ]
     },
     {
-      "tag": "AMD",
+      "tag": "age_related_macular_degeneration",
       "patterns": [
         "What is age-related macular degeneration?",
-        "What is AMD?",
-        "What are the symptoms of AMD?",
-        "What is wet AMD?",
-        "What is dry AMD?",
-        "What are drusen?"
+        "Tell me about AMD.",
+        "How does macular degeneration affect vision?",
+        "ما هو التنكس البقعي المرتبط بالعمر؟",
+        "أخبرني عن AMD.",
+        "كيف يؤثر التنكس البقعي على الرؤية؟"
       ],
       "responses": [
-        "Age-related macular degeneration (AMD) results in damaged sharp and central vision.",
-        " Central vision is needed for seeing objects clearly and for reading and driving.",
-        " AMD affects the macula, the central part of the retina that allows the eye to see fine details.",
-        " There are two forms of AMD—wet and dry. With wet AMD, abnormal blood vessels behind the retina start to grow under the macula, leading to blood and fluid leakage, causing rapid central vision loss.",
-        " An early symptom of wet AMD is that straight lines appear wavy.",
-        " With dry AMD, the macula thins over time, gradually blurring central vision.",
-        "Drusen are tiny yellow or white deposits under the retina, often found in people 60 years and older. ",
-        "Small drusen are normal and don't cause vision loss, but many large drusen raise the risk of developing advanced AMD."
+        "Age-related macular degeneration (AMD) is a disease that blurs the sharp, central vision you need for activities like reading and driving.",
+        "AMD affects the macula, the part of the eye that allows you to see fine detail.",
+        "التنكس البقعي المرتبط بالعمر هو مرض يسبب تشوش الرؤية المركزية الحادة اللازمة للقراءة والقيادة.",
+        "يؤثر التنكس البقعي على البقعة، وهي الجزء من العين المسؤول عن رؤية التفاصيل الدقيقة."
       ]
     },
     {
       "tag": "cataract",
       "patterns": [
         "What is a cataract?",
-        "What are the symptoms of cataracts?",
-        "How is cataract treated?"
+        "Tell me about cataracts.",
+        "How are cataracts treated?",
+        "ما هو إعتام عدسة العين؟",
+        "أخبرني عن الساد.",
+        "كيف يتم علاج الساد؟"
       ],
       "responses": [
-        "Cataract is a clouding of the eye's lens. ",
-        "It's the leading cause of blindness worldwide and the leading cause of vision loss in the United States.",
-        " Cataracts can occur at any age and can be present at birth.",
-        " Removing cataracts is a widely available treatment."
-      ]
-    },
-    {
-      "tag": "diabetic_retinopathy",
-      "patterns": [
-        "What is diabetic retinopathy?",
-        "What is DR?",
-        "What are the stages of diabetic retinopathy?",
-        "How can the risks of diabetic retinopathy be reduced?",
-        "How is diabetic retinopathy diagnosed?"
-      ],
-      "responses": [
-        "Diabetic retinopathy (DR) is the leading cause of blindness in American adults.",
-        " With DR, there is progressive damage to the blood vessels of the retina.",
-        " DR progresses through four stages: mild nonproliferative retinopathy, moderate nonproliferative retinopathy, severe nonproliferative retinopathy, and proliferative retinopathy.",
-        " Diabetic retinopathy usually affects both eyes. The risks of DR can be reduced through management of blood sugar, blood pressure, and cholesterol.",
-        " Early diagnosis and timely treatment reduce the risk of vision loss."
+        "A cataract is a clouding of the eye’s lens, leading to a decrease in vision.",
+        "Cataracts can be treated with surgery where the cloudy lens is replaced with a clear artificial lens.",
+        "الساد هو تغيم عدسة العين مما يؤدي إلى ضعف في الرؤية.",
+        "يمكن علاج الساد من خلال الجراحة التي يتم فيها استبدال العدسة المعتمة بعدسة صناعية شفافة."
       ]
     },
     {
       "tag": "glaucoma",
       "patterns": [
         "What is glaucoma?",
-        "What are the types of glaucoma?",
-        "How is glaucoma treated?"
+        "Tell me about glaucoma.",
+        "How is glaucoma treated?",
+        "ما هو الزرق؟",
+        "أخبرني عن الجلوكوما.",
+        "كيف يتم علاج الزرق؟"
       ],
       "responses": [
-        "Glaucoma is a group of diseases that can damage the eye's optic nerve and result in vision loss and blindness.",
-        " Glaucoma occurs when the normal fluid pressure inside the eyes slowly rises, but it can also occur with normal eye pressure.",
-        " There are two major categories: open angle and closed angle glaucoma. Open angle is a chronic condition that progresses slowly over a long period of time, often without noticeable vision loss until the disease is very advanced. Angle closure can appear suddenly and is painful. With early treatment, you can often protect your eyes against serious vision loss."
+        "Glaucoma is a group of eye diseases that can cause vision loss and blindness by damaging the optic nerve.",
+        "Early treatment can often prevent serious vision loss.",
+        "الجلوكوما هو مجموعة من أمراض العيون التي قد تسبب فقدان البصر بسبب تلف العصب البصري.",
+        "يمكن للعلاج المبكر أن يمنع غالبًا فقدان الرؤية الشديد."
       ]
     },
     {
-      "tag": "amblyopia",
+      "tag": "diabetic_retinopathy",
       "patterns": [
-        "What is amblyopia?",
-        "What is lazy eye?",
-        "What causes amblyopia?",
-        "How is amblyopia treated?"
+        "What is diabetic retinopathy?",
+        "Tell me about diabetic eye disease.",
+        "How can diabetes affect the eyes?",
+        "ما هو اعتلال الشبكية السكري؟",
+        "أخبرني عن أمراض العيون المرتبطة بالسكري.",
+        "كيف يؤثر السكري على العينين؟"
       ],
       "responses": [
-        "Amblyopia, also referred to as 'lazy eye,' is the most common cause of vision impairment in children.",
-        " With amblyopia, the vision in one eye is reduced because the eye and the brain are not working together properly.",
-        " The eye itself looks normal, but it is not being used normally because the brain is favoring the other eye.",
-        " Conditions leading to amblyopia include strabismus, being more nearsighted, farsighted, or astigmatic in one eye, and other eye conditions such as cataract (this is rare). Unless it is successfully treated in early childhood, amblyopia usually lasts into adulthood."
+        "Diabetic retinopathy is an eye disease that affects people with diabetes, causing damage to blood vessels in the retina.",
+        "It can lead to vision loss if not treated properly.",
+        "اعتلال الشبكية السكري هو مرض يصيب العينين لدى مرضى السكري ويتسبب في تلف الأوعية الدموية في الشبكية.",
+        "قد يؤدي إلى فقدان البصر إذا لم يتم علاجه بشكل مناسب."
       ]
     },
     {
-      "tag": "strabismus",
+      "tag": "eye_care_tips",
       "patterns": [
-        "What is strabismus?",
-        "What causes strabismus?",
-        "What is esotropia?",
-        "What is exotropia?"
+        "How can I protect my vision?",
+        "What are tips for healthy eyes?",
+        "How do I take care of my eyes?",
+        "كيف يمكنني حماية بصري؟",
+        "ما هي نصائح العناية بالعين؟",
+        "كيف أعتني بعيني؟"
       ],
       "responses": [
-        "Strabismus involves an imbalance in the positioning of the two eyes.",
-        " Strabismus can cause the eyes to cross in (esotropia) or turn out (exotropia).",
-        " Strabismus is caused by a lack of coordination between the eyes. As a result, the eyes look in different directions and do not focus simultaneously on a single point.",
-        "In most cases of strabismus in children, the cause is unknown. "
+        "Wear sunglasses, eat a healthy diet, avoid smoking, and get regular eye exams.",
+        "Practice good hygiene with contact lenses and give your eyes regular breaks from screens.",
+        "ارتدِ النظارات الشمسية، تناول غذاءً صحياً، تجنب التدخين، واحرص على الفحوصات الدورية للعين.",
+        "مارس نظافة جيدة مع العدسات اللاصقة وامنح عينيك فترات راحة منتظمة من الشاشات."
       ]
     },
     {
-      "tag": "eye_exams",
+      "tag": "appointment_booking",
       "patterns": [
-        "Why are eye exams important?",
-        "Who needs vision correction?",
-        "How do eye exams help?",
-        "What does a comprehensive dilated eye exam find?"
+        "I want to book an appointment.",
+        "Can I schedule an eye check-up?",
+        "How can I make an appointment?",
+        "أرغب في حجز موعد.",
+        "هل يمكنني تحديد موعد لفحص العين؟",
+        "كيف يمكنني حجز موعد؟"
       ],
       "responses": [
-        "Going to the eye doctor is part of taking care of your overall health.",
-        " Eye exams at every age and life stage can help keep your vision strong.",
-        " About 11 million Americans over age 12 need vision correction.",
-        " Regular eye exams are important for finding eye diseases early to protect your vision, as some eye problems don't have symptoms in their early stages.",
-        " A comprehensive dilated eye exam by an eye doctor can find eye diseases in the early stages, when treatment to prevent vision loss is most effective."
-      ]
-    },
-    {
-      "tag": "preventing_vision_loss",
-      "patterns": [
-        "How to prevent vision loss?",
-        "What can I do to protect my vision?",
-        "What are vision health tips?"
-      ],
-      "responses": [
-        "To prevent vision loss, have a comprehensive dilated eye exam, wear protective eyewear, wear sunglasses, give your eyes a rest, clean your hands and contact lenses properly, eat right, maintain a healthy weight and blood sugar levels, know your family's eye health history, and quit smoking."
-      ]
-    },
-    {
-      "tag": "CNV",
-      "patterns": [
-        "What is Choroidal neovascularization?",
-        "What is CNV?",
-        "What are the signs and symptoms of CNV?",
-        "How is CNV diagnosed?",
-        "How is CNV managed?"
-      ],
-      "responses": [
-        "Choroidal neovascularization (CNV) involves the growth of new blood vessels that originate from the choroid. It is a major cause of visual loss. [cite: 182, 183, 184, 185, 186, 187, 197, 218, 219, 220, 221, 222, 223, 224]In the history, patients with CNV describe painless loss of vision, metamorphopsia, paracentral or central scotoma, and apparent change in image size. Physical findings include subretinal blood, subretinal fluid, lipid exudation, retinal pigment epithelial detachment, and subretinal fibrosis. [cite: 184, 185, 186, 187, 197, 218, 219, 220, 221, 222, 223, 224]Diagnosis includes laboratory studies and imaging studies like fluorescein angiography (FA), indocyanine green (ICG) angiography, and spectral domain optical coherence tomography (OCT). [cite: 185, 186, 187, 197, 218, 219, 220, 221, 222, 223, 224]Management includes anti-VEGF treatment, laser photocoagulation, photodynamic therapy, surgical excision, surgical translocation of the fovea, and low-dose radiation therapy. [cite: 185, 186, 187, 197, 218, 219, 220, 221, 222, 223, 224]"
-      ]
-    },
-    {
-      "tag": "DME",
-      "patterns": [
-        "What is Diabetic Macular Edema?",
-        "What is DME?",
-        "What causes DME?",
-        "What are the symptoms of DME?",
-        "What increases risk for DME?",
-        "How to prevent DME?",
-        "How is DME treated?"
-      ],
-      "responses": [
-        "Diabetic Macular Edema (DME) is a complication of diabetes caused by fluid accumulation in the macula that can affect the fovea.",
-        " Consistently high blood sugar due to poor glucose control over time can damage small blood vessels in the body, including the eye, resulting in DME.",
-        "Symptoms of DME include blurred vision, double vision, and a sudden increase in eye floaters.",
-        " Increased risk of DME is associated with poor glucose control, increased length of time living with diabetes, type of diabetes, very high blood pressure, fluid retention, kidney disease, high fat levels in the blood, and pregnancy.",
-        " DME can be prevented by maintaining good blood sugar, blood pressure, and cholesterol control, receiving a comprehensive dilated eye exam, and maintaining a healthy lifestyle. ",
-        "DME can be treated with anti-vascular endothelial growth factor (anti-VEGF) drugs, bispecific monoclonal antibody drugs, Focal Laser, and Corticosteroids."
-      ]
-    },
-    {
-      "tag": "Drusen",
-      "patterns": [
-        "What are Drusen?",
-        "What causes Drusen?",
-        "What are Drusen symptoms?",
-        "Who is at risk for Drusen?",
-        "How are Drusen detected?",
-        "How are Drusen treated?"
-      ],
-      "responses": [
-        "Drusen are yellow deposits under the retina, made up of lipids and proteins.",
-        " Small drusen are common in those 50 and older without AMD.",
-        "Drusen occur naturally with age.  Symptoms of AMD include hazy vision, difficulty seeing when going from bright light to low light, and a blank or blurry spot in your central vision. ",
-        " Drusen are detected during a dilated eye exam."
-      ]
-    },
-    {
-      "tag": "RVO",
-      "patterns": [
-        "What is Retinal Vein Occlusion?",
-        "What is RVO?",
-        "What causes Retinal Vein Occlusion?",
-        "What are the symptoms of RVO?",
-        "How is RVO diagnosed?",
-        "How is RVO treated?"
-      ],
-      "responses": [
-        "Retinal Vein Occlusion (RVO) occurs when a vein in the retina becomes blocked, leading to a backup of blood and fluid in the retina.",
-        " The blockage can be caused by blood clots or compression of the vein by a nearby artery.",
-        "Symptoms of RVO can include sudden or gradual blurred vision, dark spots (scotomas), or complete vision loss in the affected eye.",
-        " RVO is usually diagnosed through a comprehensive eye exam, including visual acuity tests, dilated fundus examination, and often imaging techniques like fluorescein angiography (FA) and optical coherence tomography (OCT).",
-        "Treatment for RVO may include laser therapy, injections of anti-VEGF drugs or corticosteroids into the eye to reduce swelling and abnormal blood vessel growth."
-      ]
-    },
-    {
-      "tag": "RAO",
-      "patterns": [
-        "What is Retinal Artery Occlusion?",
-        "What is RAO?",
-        "What causes Retinal Artery Occlusion?",
-        "What are the symptoms of RAO?",
-        "How is RAO diagnosed?",
-        "How is RAO treated?"
-      ],
-      "responses": [
-        "Retinal Artery Occlusion (RAO) occurs when an artery that carries blood to the retina is blocked, cutting off the oxygen supply.",
-        " The blockage is often caused by a blood clot or plaque that travels from elsewhere in the body (e.g., carotid artery or heart).",
-        "The main symptom of RAO is a sudden, painless loss of vision in one eye. The severity of vision loss depends on which artery is blocked.",
-        " RAO is diagnosed through a comprehensive eye exam, including visual acuity tests, dilated fundus examination, and sometimes additional tests like fluorescein angiography (FA) to assess blood flow.",
-        "Treatment for RAO focuses on trying to restore blood flow to the retina as quickly as possible, but often the damage is permanent. Treatments may include ocular massage, breathing into a paper bag, and medications to dilate blood vessels or break up clots. Addressing underlying risk factors like high blood pressure and cholesterol is also crucial."
-      ]
-    },
-    {
-      "tag": "ERM",
-      "patterns": [
-        "What is Epiretinal Membrane?",
-        "What is ERM?",
-        "What is a macular pucker?",
-        "What causes Epiretinal Membrane?",
-        "What are the symptoms of ERM?",
-        "How is ERM treated?"
-      ],
-      "responses": [
-        "An Epiretinal Membrane (ERM), also known as a macular pucker or cellophane maculopathy, is a thin, semi-transparent layer of fibrous tissue that can form on the surface of the retina, particularly the macula.",
-        " ERMs often develop spontaneously due to the normal aging process of the vitreous gel pulling away from the retina. They can also be associated with other eye conditions or surgeries.",
-        "Symptoms of ERM can range from mild to severe and may include blurred or distorted vision (straight lines appearing wavy), difficulty with fine details, and sometimes a small gray area in central vision.",
-        " Many ERMs do not require treatment and may remain stable or even improve. If vision is significantly affected, a surgical procedure called a vitrectomy with membrane peel can be performed to remove the membrane."
-      ]
-    },
-    {
-      "tag": "VMT",
-      "patterns": [
-        "What is Vitreomacular Traction?",
-        "What is VMT?",
-        "What causes Vitreomacular Traction?",
-        "What are the symptoms of VMT?",
-        "How is VMT treated?"
-      ],
-      "responses": [
-        "Vitreomacular Traction (VMT) occurs when the vitreous gel, the clear gel that fills the eye, pulls abnormally on the macula (the central part of the retina).",
-        " As we age, the vitreous gel can shrink and pull away from the retina. In VMT, this separation is incomplete, and the vitreous remains attached to and pulls on the macula.",
-        "Symptoms of VMT can include blurred or distorted vision, decreased visual acuity, and metamorphopsia (straight lines appearing wavy). Some people may have no symptoms.",
-        " VMT may resolve spontaneously in some cases. If it causes significant vision problems, treatment options include observation, intravitreal injection of ocriplasmin (a medication to release the traction), or a vitrectomy surgery to remove the vitreous gel and relieve the traction on the macula."
+        "Sure! Please provide your preferred date and time for the appointment.",
+        "Of course! When would you like to schedule your eye exam?",
+        "بالتأكيد! يرجى تحديد التاريخ والوقت المفضلين لك.",
+        "طبعاً! متى تود حجز موعد لفحص العين؟"
       ]
     },
     {
       "tag": "greeting",
-      "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up" , "Good morning" , "Good evening" , "hello" , "hey" , "what's up"],
-      "responses": ["Hello!", "Good to see you!", "Hi there, how can I help?"],
-      "context_set": ""
+      "patterns": [
+        "Hi", "Hello", "Good morning", "Good evening", "Is anyone there?", "Whats up", "hey", "what's up",
+        "مرحباً", "أهلاً", "صباح الخير", "مساء الخير", "هل يوجد أحد هنا؟", "كيف الحال؟"
+      ],
+      "responses": [
+        "Hello!", "Hi there, how can I help?", "Good to see you!",
+        "مرحباً بك!", "أهلاً وسهلاً! كيف يمكنني مساعدتك؟", "تشرفت بلقائك!"
+      ]
     },
     {
       "tag": "goodbye",
-      "patterns": ["cya", "See you later", "Goodbye", "I am Leaving", "Have a Good day","bye","i have to go","gotta go"],
-      "responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!"],
-      "context_set": ""
+      "patterns": [
+        "Goodbye", "See you later", "I am leaving", "bye", "gotta go", "cya", "Have a good day",
+        "مع السلامة", "أراك لاحقاً", "وداعاً", "سأذهب الآن", "أحتاج للمغادرة"
+      ],
+      "responses": [
+        "Goodbye!", "Talk to you later!", "Sad to see you go :(",
+        "وداعاً!", "أراك لاحقاً!", "من المحزن أن تغادر :("
+      ]
     }
-   
   ]
 }

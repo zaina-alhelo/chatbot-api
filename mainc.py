@@ -8,18 +8,12 @@ import pickle
 from time import sleep
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
-import spacy
-import os
 
+# Download necessary NLTK data files
 nltk.download('punkt')
 nltk.download('wordnet')
 
 lemmatizer = WordNetLemmatizer()
-
-try:
-    spacy.load("en_core_web_sm")
-except OSError:
-    os.system("python -m spacy download en_core_web_sm")
 
 # Paths for necessary files
 INTENTS_PATH = "intents.json"
@@ -29,7 +23,7 @@ CHATTERBOT_DB = "chatterbot.sqlite3"
 
 def load_data(file_path):
     try:
-        with open(file_path) as file:
+        with open(file_path, encoding='utf-8') as file:  # <-- هنا الإضافة المهمة
             return json.load(file)
     except FileNotFoundError:
         print(f"File not found: {file_path}")
@@ -83,18 +77,21 @@ if data:
             pickle.dump((words, labels, training, output), f)
     
     # Build the TensorFlow 2.x model using tf.keras
+    model = keras.models.Sequential([
+        keras.layers.Dense(256, activation='relu', input_shape=(len(training[0]),)),
+        keras.layers.Dropout(0.5),
+        keras.layers.Dense(128, activation='relu'),
+        keras.layers.Dropout(0.5),
+        keras.layers.Dense(len(output[0]), activation='softmax')
+    ])
+
+    # Compile the model
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+    # Train or load the model
     try:
         model = keras.models.load_model(MODEL_PATH)
-    except Exception as e:
-        print(f"Error loading model: {e}")
-        model = keras.models.Sequential([
-            keras.layers.Dense(256, activation='relu', input_shape=(len(training[0]),)),
-            keras.layers.Dropout(0.5),
-            keras.layers.Dense(128, activation='relu'),
-            keras.layers.Dropout(0.5),
-            keras.layers.Dense(len(output[0]), activation='softmax')
-        ])
-        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    except:
         model.fit(training, output, epochs=600, batch_size=16, verbose=1)
         model.save(MODEL_PATH)
 else:
@@ -156,8 +153,8 @@ def chat():
 
             if confidence > 0.7:
                 responses = get_responses(tag, intents_data)
-                if responses:
-                    response = random.choice(responses)
+                if responses:  # Ensure there are responses
+                    response = random.choice(responses)  # Select just one random response
                     sleep(0.5)
                     print("Bot (Intent):", response)
                 else:
@@ -171,6 +168,8 @@ def chat():
                 except Exception as e:
                     print(f"ChatterBot Error: {e}")
                     print("Bot (General): Sorry, I'm having trouble responding generally right now.")
+        # else:
+        #     print("Bot: Model not available. Please check the intents.json file and try again.")
 
 if __name__ == "__main__":
     chat()
