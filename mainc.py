@@ -8,6 +8,14 @@ import pickle
 from time import sleep
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
+import spacy
+import os
+
+# تحميل موديل en_core_web_sm إذا لم يكن موجود
+try:
+    spacy.load("en_core_web_sm")
+except OSError:
+    os.system("python -m spacy download en_core_web_sm")
 
 # Download necessary NLTK data files
 nltk.download('punkt')
@@ -153,8 +161,8 @@ def chat():
 
             if confidence > 0.7:
                 responses = get_responses(tag, intents_data)
-                if responses:  # Ensure there are responses
-                    response = random.choice(responses)  # Select just one random response
+                if responses:
+                    response = random.choice(responses)
                     sleep(0.5)
                     print("Bot (Intent):", response)
                 else:
@@ -168,8 +176,6 @@ def chat():
                 except Exception as e:
                     print(f"ChatterBot Error: {e}")
                     print("Bot (General): Sorry, I'm having trouble responding generally right now.")
-        # else:
-        #     print("Bot: Model not available. Please check the intents.json file and try again.")
 
 if __name__ == "__main__":
     chat()
