@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 import nltk
 from nltk.stem import WordNetLemmatizer
+nltk.data.path.append('./nltk_data')
+
 import numpy as np
 from tensorflow import keras
 import random
