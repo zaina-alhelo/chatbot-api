@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 import nltk
 from nltk.stem import WordNetLemmatizer
 nltk.data.path.append('./nltk_data')
-
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 import numpy as np
 from tensorflow import keras
 import random
@@ -10,35 +11,28 @@ import json
 import pickle
 import os
 
-# تحميل ملفات NLTK المطلوبة
 nltk.download('punkt')
 nltk.download('wordnet')
 
-# تهيئة الأدوات
 lemmatizer = WordNetLemmatizer()
 
-# مسارات الملفات
 INTENTS_PATH = "intents.json"
 PICKLE_PATH = "data.pickle"
 MODEL_PATH = "model.keras"
 
-# إنشاء تطبيق Flask
 app = Flask(__name__)
 
-# متغيرات لتحميل البيانات لاحقًا
 model = None
 words = []
 labels = []
 intents_data = {}
 
-# تحميل بيانات الـ intents
 def load_intents():
     if not os.path.exists(INTENTS_PATH):
         raise FileNotFoundError(f"{INTENTS_PATH} not found.")
     with open(INTENTS_PATH, encoding='utf-8') as file:
         return json.load(file)
 
-# تجهيز البيانات
 def preprocess_data(data):
     words, labels, docs_x, docs_y = [], [], [], []
 
