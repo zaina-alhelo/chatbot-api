@@ -1,4 +1,7 @@
 import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+
 from nltk.stem import WordNetLemmatizer
 import numpy as np
 from tensorflow import keras
@@ -11,14 +14,12 @@ from chatterbot.trainers import ListTrainer
 import spacy
 import os
 
+
 try:
     spacy.load("en_core_web_sm")
 except OSError:
     os.system("python -m spacy download en_core_web_sm")
 
-# Download necessary NLTK data files
-nltk.download('punkt')
-nltk.download('wordnet')
 
 lemmatizer = WordNetLemmatizer()
 
