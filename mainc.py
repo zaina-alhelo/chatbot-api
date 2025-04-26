@@ -1,7 +1,4 @@
 import nltk
-nltk.download('punkt')
-nltk.download('wordnet')
-
 from nltk.stem import WordNetLemmatizer
 import numpy as np
 from tensorflow import keras
@@ -14,14 +11,17 @@ from chatterbot.trainers import ListTrainer
 import spacy
 import os
 
+# تحميل الموارد اللازمة لمكتبة NLTK
+nltk.download('punkt')
+nltk.download('wordnet')
 
+lemmatizer = WordNetLemmatizer()
+
+# تحميل النموذج الخاص بـ SpaCy
 try:
     spacy.load("en_core_web_sm")
 except OSError:
     os.system("python -m spacy download en_core_web_sm")
-
-
-lemmatizer = WordNetLemmatizer()
 
 # Paths for necessary files
 INTENTS_PATH = "intents.json"
@@ -85,21 +85,18 @@ if data:
             pickle.dump((words, labels, training, output), f)
     
     # Build the TensorFlow 2.x model using tf.keras
-    model = keras.models.Sequential([
-        keras.layers.Dense(256, activation='relu', input_shape=(len(training[0]),)),
-        keras.layers.Dropout(0.5),
-        keras.layers.Dense(128, activation='relu'),
-        keras.layers.Dropout(0.5),
-        keras.layers.Dense(len(output[0]), activation='softmax')
-    ])
-
-    # Compile the model
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
-    # Train or load the model
     try:
         model = keras.models.load_model(MODEL_PATH)
-    except:
+    except Exception as e:
+        print(f"Error loading model: {e}")
+        model = keras.models.Sequential([
+            keras.layers.Dense(256, activation='relu', input_shape=(len(training[0]),)),
+            keras.layers.Dropout(0.5),
+            keras.layers.Dense(128, activation='relu'),
+            keras.layers.Dropout(0.5),
+            keras.layers.Dense(len(output[0]), activation='softmax')
+        ])
+        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
         model.fit(training, output, epochs=600, batch_size=16, verbose=1)
         model.save(MODEL_PATH)
 else:
