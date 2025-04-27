@@ -1,3 +1,5 @@
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # Add this at the top of your script, before importing TensorFlow
 import nltk
 from nltk.stem import WordNetLemmatizer
 import numpy as np
@@ -9,9 +11,7 @@ from time import sleep
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
-# Download necessary NLTK data files
-nltk.download('punkt')
-nltk.download('wordnet')
+
 
 lemmatizer = WordNetLemmatizer()
 
