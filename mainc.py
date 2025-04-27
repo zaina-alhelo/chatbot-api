@@ -1,46 +1,39 @@
-#mainc 
-from flask import Flask, request, jsonify
 import nltk
-nltk.data.path.append('./nltk_data')
 from nltk.stem import WordNetLemmatizer
 import numpy as np
 from tensorflow import keras
 import random
 import json
 import pickle
-import os
+from time import sleep
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 
-# تحميل ملفات NLTK المطلوبة
+# Download necessary NLTK data files
 nltk.download('punkt')
 nltk.download('wordnet')
 
-# تهيئة الأدوات
 lemmatizer = WordNetLemmatizer()
 
-# مسارات الملفات
+# Paths for necessary files
 INTENTS_PATH = "intents.json"
 PICKLE_PATH = "data.pickle"
 MODEL_PATH = "model.keras"
+CHATTERBOT_DB = "chatterbot.sqlite3"
 
-# إنشاء تطبيق Flask
-app = Flask(__name__)
+def load_data(file_path):
+    try:
+        with open(file_path, encoding='utf-8') as file:  # <-- هنا الإضافة المهمة
+            return json.load(file)
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return None
 
-# متغيرات لتحميل البيانات لاحقًا
-model = None
-words = []
-labels = []
-intents_data = {}
-
-# تحميل بيانات الـ intents
-def load_intents():
-    if not os.path.exists(INTENTS_PATH):
-        raise FileNotFoundError(f"{INTENTS_PATH} not found.")
-    with open(INTENTS_PATH, encoding='utf-8') as file:
-        return json.load(file)
-
-# تجهيز البيانات
 def preprocess_data(data):
-    words, labels, docs_x, docs_y = [], [], [], []
+    words = []
+    labels = []
+    docs_x = []
+    docs_y = []
 
     for intent in data["intents"]:
         for pattern in intent["patterns"]:
@@ -51,53 +44,62 @@ def preprocess_data(data):
         if intent["tag"] not in labels:
             labels.append(intent["tag"])
 
-    words = sorted(set(lemmatizer.lemmatize(w.lower()) for w in words if w != "?"))
+    words = [lemmatizer.lemmatize(w.lower()) for w in words if w != "?"]
+    words = sorted(list(set(words)))
     labels = sorted(labels)
 
     training = []
     output = []
-    out_empty = [0] * len(labels)
+    out_empty = [0 for _ in range(len(labels))]
 
     for i, doc in enumerate(docs_x):
-        bag = [1 if w in [lemmatizer.lemmatize(word.lower()) for word in doc] else 0 for w in words]
-        output_row = out_empty.copy()
+        bag = []
+        wrds = [lemmatizer.lemmatize(w.lower()) for w in doc]
+        for w in words:
+            bag.append(1) if w in wrds else bag.append(0)
+
+        output_row = out_empty[:]
         output_row[labels.index(docs_y[i])] = 1
         training.append(bag)
         output.append(output_row)
 
     return np.array(training), np.array(output), words, labels
 
-# تحميل أو تجهيز النموذج
-def load_model():
-    global model, words, labels, intents_data
-
-    intents_data = load_intents()
-
-    if os.path.exists(PICKLE_PATH):
+# Load or process data
+data = load_data(INTENTS_PATH)
+if data:
+    try:
         with open(PICKLE_PATH, "rb") as f:
             words, labels, training, output = pickle.load(f)
-    else:
-        training, output, words, labels = preprocess_data(intents_data)
+    except (FileNotFoundError, EOFError):
+        training, output, words, labels = preprocess_data(data)
         with open(PICKLE_PATH, "wb") as f:
             pickle.dump((words, labels, training, output), f)
+    
+    # Build the TensorFlow 2.x model using tf.keras
+    model = keras.models.Sequential([
+        keras.layers.Dense(256, activation='relu', input_shape=(len(training[0]),)),
+        keras.layers.Dropout(0.5),
+        keras.layers.Dense(128, activation='relu'),
+        keras.layers.Dropout(0.5),
+        keras.layers.Dense(len(output[0]), activation='softmax')
+    ])
 
-    if os.path.exists(MODEL_PATH):
+    # Compile the model
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+    # Train or load the model
+    try:
         model = keras.models.load_model(MODEL_PATH)
-    else:
-        model = keras.models.Sequential([
-            keras.layers.Dense(256, activation='relu', input_shape=(len(training[0]),)),
-            keras.layers.Dropout(0.5),
-            keras.layers.Dense(128, activation='relu'),
-            keras.layers.Dropout(0.5),
-            keras.layers.Dense(len(output[0]), activation='softmax')
-        ])
-        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    except:
         model.fit(training, output, epochs=600, batch_size=16, verbose=1)
         model.save(MODEL_PATH)
+else:
+    print("Data not loaded. Please check the intents.json file.")
+    model = None
 
-# تجهيز Bag of Words
 def bag_of_words(s, words):
-    bag = [0] * len(words)
+    bag = [0 for _ in range(len(words))]
     s_words = nltk.word_tokenize(s)
     s_words = [lemmatizer.lemmatize(word.lower()) for word in s_words]
     for se in s_words:
@@ -106,47 +108,68 @@ def bag_of_words(s, words):
                 bag[i] = 1
     return np.array(bag)
 
-# التنبؤ بالـ intent
-def predict_intent(sentence):
-    bow = bag_of_words(sentence, words)
+def predict_intent(input_sentence, words, labels, model):
+    bow = bag_of_words(input_sentence, words)
     results = model.predict(np.array([bow]))[0]
     results_index = np.argmax(results)
     tag = labels[results_index]
     confidence = results[results_index]
     return tag, confidence
 
-# جلب الرد بناءً على الـ intent
-def get_response(tag):
+def get_responses(tag, intents_data):
     for intent in intents_data["intents"]:
-        if intent["tag"] == tag:
-            return random.choice(intent["responses"])
-    return "I'm sorry, I don't understand."
+        if intent['tag'] == tag:
+            return intent['responses']
+    return ["I'm sorry, I don't have a response for that."]
 
-# صفحة البداية
-@app.route("/", methods=["GET"])
-def home():
-    return "🤖 Bot is running!"
+# Initialize ChatterBot
+chatbot = ChatBot(
+    'EyeBot',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    database_uri=f'sqlite:///{CHATTERBOT_DB}'
+)
 
-# نقطة استقبال الرسائل
-@app.route("/chat", methods=["POST"])
+# Create ListTrainer for ChatterBot
+list_trainer = ListTrainer(chatbot)
+
+# Train ChatterBot with intents
+if data:
+    for intent in data['intents']:
+        for pattern in intent['patterns']:
+            for response in intent['responses']:
+                list_trainer.train([pattern, response])
+
 def chat():
-    if model is None:
-        load_model()
+    print("Hi, How can I help you!")
+    intents_data = load_data(INTENTS_PATH)
+    while True:
+        inp = input("You: ")
+        if inp.lower() == "quit":
+            break
 
-    data = request.get_json()
+        if model:
+            tag, confidence = predict_intent(inp, words, labels, model)
+            print(f"Intent Model - Predicted tag: {tag}, Confidence: {confidence}")
 
-    if not data or "message" not in data:
-        return jsonify({"error": "No message provided."}), 400
-
-    user_message = data["message"]
-    tag, confidence = predict_intent(user_message)
-
-    if confidence > 0.7:
-        response = get_response(tag)
-    else:
-        response = "I'm not sure how to answer that."
-
-    return jsonify({"response": response})
+            if confidence > 0.7:
+                responses = get_responses(tag, intents_data)
+                if responses:  # Ensure there are responses
+                    response = random.choice(responses)  # Select just one random response
+                    sleep(0.5)
+                    print("Bot (Intent):", response)
+                else:
+                    print("Bot (Intent): No response found for this intent.")
+            else:
+                print("Intent confidence is low. Asking general chatbot...")
+                try:
+                    response = chatbot.get_response(inp)
+                    sleep(0.5)
+                    print("Bot (General):", response)
+                except Exception as e:
+                    print(f"ChatterBot Error: {e}")
+                    print("Bot (General): Sorry, I'm having trouble responding generally right now.")
+        # else:
+        #     print("Bot: Model not available. Please check the intents.json file and try again.")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    chat()

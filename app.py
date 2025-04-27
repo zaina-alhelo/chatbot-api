@@ -61,7 +61,6 @@ def preprocess_data(data):
 
     return np.array(training), np.array(output), words, labels
 
-# تحميل أو تجهيز النموذج
 def load_model():
     global model, words, labels, intents_data
 
@@ -143,4 +142,6 @@ def chat():
     return jsonify({"response": response})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Read port from environment
+    app.run(host="0.0.0.0", port=port)
+

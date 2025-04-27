@@ -6,4 +6,5 @@ nltk
 flask
 flask-cors
 gunicorn
+chatterbot_corpus
 
