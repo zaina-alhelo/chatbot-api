@@ -6,7 +6,9 @@ from flask import Flask, request, jsonify
 from keras.models import load_model as keras_load_model
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
+import spacy
 
+nlp = spacy.load("en_core_web_sm")
 PICKLE_PATH = "data.pickle"
 MODEL_PATH = "model.keras" 
 INTENTS_PATH = "intents.json"
