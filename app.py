@@ -6,11 +6,11 @@ from flask import Flask, request, jsonify
 from keras.models import load_model as keras_load_model
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
-import spacy
+# import spacy   # لم نعد بحاجة له
 
-nlp = spacy.load("en_core_web_sm")
+# nlp = spacy.load("en_core_web_sm")  # نحذفه لأنه ليس مستخدمًا
 PICKLE_PATH = "data.pickle"
-MODEL_PATH = "model.keras" 
+MODEL_PATH = "model.keras"
 INTENTS_PATH = "intents.json"
 
 app = Flask(__name__)
@@ -91,7 +91,6 @@ def chat():
     return jsonify({
         "response": response
     })
-
 
 if __name__ == "__main__":
     load_intents()
