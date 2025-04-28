@@ -1,11 +1,9 @@
-keras
-numpy
-tensorflow
-chatterbot
-nltk
-flask
-flask-cors
-gunicorn
-chatterbot_corpus
-spacy
-en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
+keras==2.15.0
+numpy==1.24.3
+tensorflow==2.15.0
+chatterbot==1.0.4
+nltk==3.8.1
+flask==2.3.3
+flask-cors==4.0.0
+gunicorn==21.2.0
+chatterbot_corpus==1.2.0
