@@ -7,6 +7,7 @@ from keras.models import load_model as keras_load_model
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 import nltk
+nltk.data.path.append('./nltk_data')
 
 PICKLE_PATH = "data.pickle"
 MODEL_PATH = "model.keras"
